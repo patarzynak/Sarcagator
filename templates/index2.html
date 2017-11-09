@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<!-- i like bulma -->
+		<link rel="stylesheet" href="/static/bulma.css" type="text/css">
+	</head>
+	<body>
+		<section class="section">
+			<div class="container">
+				<div class="columns is-centered">
+					<div class="column is-half">
+						<p class="has-text-centered">
+							<img src="https://s-media-cache-ak0.pinimg.com/564x/31/4a/3b/314a3b959a7311a0e51671cb50793113.jpg" style="box-shadow: 5px 5px 8px lightgrey; width: 300px">
+						</p>
+						<br><br>
+						<div class="field">
+							<label class="label">Input Sentence</label>
+							<p class="control">
+								<textarea class="textarea" placeholder="Enter sentence here" id="input_sentence"></textarea>
+							</p>
+						</div>
+						<div class="field">
+							<p class="control">
+								<button class="button is-primary" id="submit">Submit</button>
+							</p>
+						</div>
+						<div class="field">
+							<label class="label">Response</label>
+							<p class="control">
+								<textarea class="textarea" id="output_sentence"></textarea>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+	<script src="/static/jquery-3.2.0.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$("#submit").click(function() {
+			$.get("/getsarky", {"sentence": $("#input_sentence").val()}, function(resp) {
+				$("#output_sentence").val(resp.response);
+			});
+		});
+	</script>
+</html>
